@@ -1,0 +1,603 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Discover flexible coworking spaces, private offices and meeting rooms at WorkNest. Find the perfect workspace for your next big idea.">
+  <title>WorkNest | Find Your Perfect Workspace</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: { sans: ["DM Sans", "sans-serif"] },
+          colors: {
+            forest: "#164E3B",
+            deep: "#10382C",
+            sage: "#E9F0E9",
+            cream: "#F8F7F1",
+            muted: "#64746B"
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    html { scroll-behavior: smooth; }
+    body { font-family: "DM Sans", sans-serif; }
+    .hero-image {
+      background: linear-gradient(90deg, rgba(13,42,31,.08), rgba(13,42,31,.05)),
+      url("https://images.unsplash.com/photo-1497366754035-f200968a6e72?auto=format&fit=crop&w=1800&q=85") center/cover;
+    }
+    .workspace-card { transition: transform .25s, box-shadow .25s; }
+    .workspace-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 16px 32px rgba(22,78,59,.10);
+    }
+    .nav-link { transition: color .2s; }
+    .nav-link:hover { color: #164E3B; }
+    .toast { animation: slideIn .3s ease-out; }
+    @keyframes slideIn {
+      from { opacity: 0; transform: translateY(12px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .menu-open { display: flex !important; }
+    input:focus, select:focus, textarea:focus {
+      outline: 2px solid #8BAE98;
+      outline-offset: 1px;
+    }
+  </style>
+</head>
+
+<body class="bg-white text-slate-800">
+
+  <!-- Navigation -->
+  <header class="sticky top-0 z-50 border-b border-gray-100 bg-white/95 backdrop-blur">
+    <nav class="mx-auto flex max-w-7xl items-center justify-between px-5 py-4 lg:px-8">
+      <a href="#home" class="flex items-center gap-2">
+        <span class="flex h-10 w-10 items-center justify-center rounded-xl bg-forest text-xl font-extrabold text-white">W</span>
+        <span>
+          <span class="block text-xl font-extrabold tracking-tight">WorkNest</span>
+          <span class="block text-xs tracking-widest text-muted">WORK · CONNECT · GROW</span>
+        </span>
+      </a>
+
+      <div id="navMenu" class="absolute left-0 top-full hidden w-full flex-col gap-5 border-b bg-white p-6 md:static md:flex md:w-auto md:flex-row md:items-center md:border-0 md:p-0">
+        <a class="nav-link" href="#home">Home</a>
+        <a class="nav-link" href="#spaces">Spaces</a>
+        <a class="nav-link" href="#pricing">Pricing</a>
+        <a class="nav-link" href="#amenities">Amenities</a>
+        <a class="nav-link" href="#stories">Stories</a>
+        <a class="nav-link" href="#contact">Contact</a>
+        <a href="#booking" class="rounded-full bg-forest px-6 py-3 text-center font-semibold text-white hover:bg-deep">Book a Tour</a>
+      </div>
+
+      <button id="menuToggle" class="rounded-lg border px-3 py-2 text-2xl md:hidden" aria-label="Toggle navigation" aria-expanded="false">☰</button>
+    </nav>
+  </header>
+
+  <main>
+    <!-- Hero -->
+    <section id="home" class="bg-cream">
+      <div class="mx-auto grid max-w-7xl items-center gap-8 px-5 py-12 md:grid-cols-2 md:py-20 lg:px-8">
+        <div>
+          <p class="mb-4 text-sm font-bold uppercase tracking-[.2em] text-forest">A better way to work</p>
+          <h1 class="max-w-xl text-4xl font-extrabold leading-tight tracking-tight md:text-6xl">
+            Your work deserves a <span class="text-forest">better space.</span>
+          </h1>
+          <p class="mt-6 max-w-lg leading-7 text-muted">
+            Find your focus, meet your people, and turn your ideas into something extraordinary. Welcome to a workspace built around you.
+          </p>
+          <div class="mt-8 flex flex-wrap gap-4">
+            <a href="#spaces" class="rounded-full bg-forest px-7 py-3.5 font-semibold text-white hover:bg-deep">Explore Spaces →</a>
+            <a href="#booking" class="rounded-full border border-forest px-7 py-3.5 font-semibold text-forest hover:bg-sage">Book a Visit</a>
+          </div>
+          <div class="mt-10 flex flex-wrap gap-8">
+            <div><p class="text-2xl font-extrabold">4.9/5</p><p class="text-sm text-muted">Member satisfaction</p></div>
+            <div><p class="text-2xl font-extrabold">24/7</p><p class="text-sm text-muted">Flexible access*</p></div>
+            <div><p class="text-2xl font-extrabold">Fast</p><p class="text-sm text-muted">Reliable Wi-Fi</p></div>
+          </div>
+          <p class="mt-3 text-xs text-muted">*Access depends on membership plan.</p>
+        </div>
+        <div class="hero-image min-h-[330px] rounded-3xl shadow-xl md:min-h-[480px]">
+          <div class="flex h-full min-h-[330px] items-end p-6 md:min-h-[480px]">
+            <div class="rounded-2xl bg-white/95 p-5 shadow-lg backdrop-blur">
+              <p class="font-bold text-forest">Make room for great ideas.</p>
+              <p class="mt-1 text-sm text-muted">A workspace that works for you.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Benefits -->
+    <section class="border-y border-gray-100 bg-white">
+      <div class="mx-auto grid max-w-7xl gap-6 px-5 py-8 sm:grid-cols-2 lg:grid-cols-4 lg:px-8">
+        <div class="flex items-center gap-4">
+          <span class="rounded-2xl bg-sage p-3 text-2xl">▦</span>
+          <div><h3 class="font-bold">Flexible Spaces</h3><p class="text-sm text-muted">Choose your way to work</p></div>
+        </div>
+        <div class="flex items-center gap-4">
+          <span class="rounded-2xl bg-sage p-3 text-2xl">⌁</span>
+          <div><h3 class="font-bold">Fast Wi-Fi</h3><p class="text-sm text-muted">Stay connected</p></div>
+        </div>
+        <div class="flex items-center gap-4">
+          <span class="rounded-2xl bg-sage p-3 text-2xl">♧</span>
+          <div><h3 class="font-bold">Great Community</h3><p class="text-sm text-muted">Meet and collaborate</p></div>
+        </div>
+        <div class="flex items-center gap-4">
+          <span class="rounded-2xl bg-sage p-3 text-2xl">⌖</span>
+          <div><h3 class="font-bold">Prime Locations</h3><p class="text-sm text-muted">Work closer to everything</p></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Spaces -->
+    <section id="spaces" class="mx-auto max-w-7xl px-5 py-20 lg:px-8">
+      <div class="mb-9 flex flex-wrap items-end justify-between gap-4">
+        <div>
+          <p class="mb-2 text-sm font-bold uppercase tracking-widest text-forest">Find your fit</p>
+          <h2 class="text-3xl font-extrabold md:text-4xl">Spaces for every kind of work</h2>
+          <p class="mt-3 text-muted">From a single desk to an entire office, we have room for your ambition.</p>
+        </div>
+        <div class="flex flex-wrap gap-2">
+          <button class="filter-btn rounded-full border px-4 py-2 text-sm font-semibold" data-filter="all">All spaces</button>
+          <button class="filter-btn rounded-full border px-4 py-2 text-sm font-semibold" data-filter="individual">Individual</button>
+          <button class="filter-btn rounded-full border px-4 py-2 text-sm font-semibold" data-filter="team">For teams</button>
+        </div>
+      </div>
+
+      <div id="spaceGrid" class="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+        <article class="workspace-card overflow-hidden rounded-2xl border border-gray-100 bg-white" data-category="individual">
+          <img class="h-48 w-full object-cover" loading="lazy" src="https://images.unsplash.com/photo-1497366811353-6870744d04b2?auto=format&fit=crop&w=700&q=80" alt="Shared coworking desks">
+          <div class="p-5">
+            <span class="rounded-full bg-sage px-3 py-1 text-xs font-bold text-forest">Flexible</span>
+            <h3 class="mt-4 text-xl font-bold">Hot Desk</h3>
+            <p class="mt-2 text-sm leading-6 text-muted">A comfortable shared desk for independent professionals and remote workers.</p>
+            <p class="mt-5 text-xl font-extrabold">₹5,999 <span class="text-sm font-normal text-muted">/ month</span></p>
+            <button class="space-select mt-5 w-full rounded-full border border-forest py-3 font-semibold text-forest hover:bg-sage" data-space="Hot Desk">View Details</button>
+          </div>
+        </article>
+
+        <article class="workspace-card overflow-hidden rounded-2xl border border-gray-100 bg-white" data-category="individual">
+          <img class="h-48 w-full object-cover" loading="lazy" src="https://images.unsplash.com/photo-1497366754035-f200968a6e72?auto=format&fit=crop&w=700&q=80" alt="Dedicated office desk">
+          <div class="p-5">
+            <span class="rounded-full bg-sage px-3 py-1 text-xs font-bold text-forest">Personal</span>
+            <h3 class="mt-4 text-xl font-bold">Dedicated Desk</h3>
+            <p class="mt-2 text-sm leading-6 text-muted">Your own reserved desk, with storage and a consistent place to focus.</p>
+            <p class="mt-5 text-xl font-extrabold">₹8,999 <span class="text-sm font-normal text-muted">/ month</span></p>
+            <button class="space-select mt-5 w-full rounded-full border border-forest py-3 font-semibold text-forest hover:bg-sage" data-space="Dedicated Desk">View Details</button>
+          </div>
+        </article>
+
+        <article class="workspace-card overflow-hidden rounded-2xl border border-gray-100 bg-white" data-category="team">
+          <img class="h-48 w-full object-cover" loading="lazy" src="https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=700&q=80" alt="Private meeting room">
+          <div class="p-5">
+            <span class="rounded-full bg-amber-100 px-3 py-1 text-xs font-bold text-amber-800">Private</span>
+            <h3 class="mt-4 text-xl font-bold">Private Office</h3>
+            <p class="mt-2 text-sm leading-6 text-muted">A private, furnished office for growing teams that value focus and privacy.</p>
+            <p class="mt-5 text-xl font-extrabold">₹12,999 <span class="text-sm font-normal text-muted">/ month</span></p>
+            <button class="space-select mt-5 w-full rounded-full border border-forest py-3 font-semibold text-forest hover:bg-sage" data-space="Private Office">View Details</button>
+          </div>
+        </article>
+
+        <article class="workspace-card overflow-hidden rounded-2xl border border-gray-100 bg-white" data-category="team">
+          <img class="h-48 w-full object-cover" loading="lazy" src="https://images.unsplash.com/photo-1517502884422-41eaead166d4?auto=format&fit=crop&w=700&q=80" alt="Meeting room for teams">
+          <div class="p-5">
+            <span class="rounded-full bg-sage px-3 py-1 text-xs font-bold text-forest">On demand</span>
+            <h3 class="mt-4 text-xl font-bold">Meeting Room</h3>
+            <p class="mt-2 text-sm leading-6 text-muted">A professional setting for client presentations, interviews, and team sessions.</p>
+            <p class="mt-5 text-xl font-extrabold">₹799 <span class="text-sm font-normal text-muted">/ hour</span></p>
+            <button class="space-select mt-5 w-full rounded-full border border-forest py-3 font-semibold text-forest hover:bg-sage" data-space="Meeting Room">View Details</button>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- Pricing -->
+    <section id="pricing" class="bg-cream py-20">
+      <div class="mx-auto max-w-7xl px-5 lg:px-8">
+        <div class="mx-auto mb-12 max-w-2xl text-center">
+          <p class="mb-3 text-sm font-bold uppercase tracking-widest text-forest">Simple and transparent</p>
+          <h2 class="text-3xl font-extrabold md:text-4xl">Memberships that fit your goals</h2>
+          <p class="mt-4 leading-7 text-muted">Start with what you need today. Choose a plan that grows with you.</p>
+        </div>
+
+        <div class="grid gap-6 md:grid-cols-2 lg:grid-cols-4">
+          <article class="rounded-2xl border border-gray-100 bg-white p-6">
+            <div class="mb-5 flex h-12 w-12 items-center justify-center rounded-xl bg-sage text-2xl">▦</div>
+            <h3 class="text-lg font-bold">Hot Desk</h3>
+            <p class="mt-3 text-3xl font-extrabold">₹5,999<span class="text-sm font-normal text-muted">/mo</span></p>
+            <p class="mt-3 text-sm text-muted">Ideal for freelancers and remote workers.</p>
+            <ul class="my-6 space-y-3 text-sm">
+              <li>✓ Shared workspace</li><li>✓ High-speed Wi-Fi</li><li>✓ Community events</li><li>✓ Coffee and tea</li>
+            </ul>
+            <button class="choose-plan w-full rounded-full border border-forest py-3 font-semibold text-forest hover:bg-sage" data-plan="Hot Desk">Choose Plan</button>
+          </article>
+
+          <article class="rounded-2xl border border-gray-100 bg-white p-6">
+            <div class="mb-5 flex h-12 w-12 items-center justify-center rounded-xl bg-sage text-2xl">▣</div>
+            <h3 class="text-lg font-bold">Dedicated Desk</h3>
+            <p class="mt-3 text-3xl font-extrabold">₹8,999<span class="text-sm font-normal text-muted">/mo</span></p>
+            <p class="mt-3 text-sm text-muted">For professionals who need a regular base.</p>
+            <ul class="my-6 space-y-3 text-sm">
+              <li>✓ Reserved personal desk</li><li>✓ Storage facilities</li><li>✓ High-speed Wi-Fi</li><li>✓ Member networking</li>
+            </ul>
+            <button class="choose-plan w-full rounded-full border border-forest py-3 font-semibold text-forest hover:bg-sage" data-plan="Dedicated Desk">Choose Plan</button>
+          </article>
+
+          <article class="relative rounded-2xl border-2 border-forest bg-white p-6 shadow-lg">
+            <span class="absolute right-4 top-4 rounded-full bg-forest px-3 py-1 text-xs font-bold text-white">POPULAR</span>
+            <div class="mb-5 flex h-12 w-12 items-center justify-center rounded-xl bg-sage text-2xl">▤</div>
+            <h3 class="text-lg font-bold">Private Office</h3>
+            <p class="mt-3 text-3xl font-extrabold">₹12,999<span class="text-sm font-normal text-muted">/mo</span></p>
+            <p class="mt-3 text-sm text-muted">For small teams ready to work together.</p>
+            <ul class="my-6 space-y-3 text-sm">
+              <li>✓ Furnished private office</li><li>✓ Meeting room credits</li><li>✓ Secure access</li><li>✓ Business support</li>
+            </ul>
+            <button class="choose-plan w-full rounded-full bg-forest py-3 font-semibold text-white hover:bg-deep" data-plan="Private Office">Choose Plan</button>
+          </article>
+
+          <article class="rounded-2xl border border-gray-100 bg-white p-6">
+            <div class="mb-5 flex h-12 w-12 items-center justify-center rounded-xl bg-sage text-2xl">♧</div>
+            <h3 class="text-lg font-bold">Enterprise</h3>
+            <p class="mt-3 text-3xl font-extrabold">Custom</p>
+            <p class="mt-3 text-sm text-muted">Flexible workspace solutions for larger teams.</p>
+            <ul class="my-6 space-y-3 text-sm">
+              <li>✓ Tailored office layouts</li><li>✓ Dedicated support</li><li>✓ Scalable workspace</li><li>✓ Custom agreements</li>
+            </ul>
+            <a href="#contact" class="block w-full rounded-full border border-forest py-3 text-center font-semibold text-forest hover:bg-sage">Contact Us</a>
+          </article>
+        </div>
+        <p class="mt-6 text-center text-xs text-muted">Sample prices for this portfolio project. Confirm actual prices and inclusions before booking.</p>
+      </div>
+    </section>
+
+    <!-- About -->
+    <section id="about" class="mx-auto grid max-w-7xl items-center gap-12 px-5 py-20 md:grid-cols-2 lg:px-8">
+      <div class="grid grid-cols-2 gap-4">
+        <img class="h-64 w-full rounded-2xl object-cover" loading="lazy" src="https://images.unsplash.com/photo-1497366811353-6870744d04b2?auto=format&fit=crop&w=600&q=80" alt="Collaborative workspace">
+        <img class="mt-10 h-64 w-full rounded-2xl object-cover" loading="lazy" src="https://images.unsplash.com/photo-1497366754035-f200968a6e72?auto=format&fit=crop&w=600&q=80" alt="Modern office interior">
+      </div>
+      <div>
+        <p class="mb-3 text-sm font-bold uppercase tracking-widest text-forest">More than a desk</p>
+        <h2 class="text-3xl font-extrabold leading-tight md:text-4xl">A community that helps you do your best work.</h2>
+        <p class="mt-5 leading-7 text-muted">We believe your environment can change the way you think, create, and collaborate. WorkNest brings people together in thoughtfully designed spaces that make every working day better.</p>
+        <div class="mt-7 space-y-5">
+          <div class="flex gap-4"><span class="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-sage font-bold text-forest">01</span><div><h3 class="font-bold">Designed for focus</h3><p class="mt-1 text-sm leading-6 text-muted">Comfortable workstations, quiet corners, and private spaces.</p></div></div>
+          <div class="flex gap-4"><span class="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-sage font-bold text-forest">02</span><div><h3 class="font-bold">Built for connection</h3><p class="mt-1 text-sm leading-6 text-muted">Meet ambitious people and build meaningful professional relationships.</p></div></div>
+          <div class="flex gap-4"><span class="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-sage font-bold text-forest">03</span><div><h3 class="font-bold">Made for flexibility</h3><p class="mt-1 text-sm leading-6 text-muted">Options for individuals, startups, and established businesses.</p></div></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Amenities -->
+    <section id="amenities" class="bg-sage/60 py-20">
+      <div class="mx-auto max-w-7xl px-5 lg:px-8">
+        <div class="mb-10 text-center">
+          <p class="mb-3 text-sm font-bold uppercase tracking-widest text-forest">Everything you need</p>
+          <h2 class="text-3xl font-extrabold md:text-4xl">Little things. Better workdays.</h2>
+          <p class="mt-4 text-muted">Thoughtful amenities to make your day comfortable and productive.</p>
+        </div>
+        <div class="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+          <div class="rounded-2xl bg-white p-6"><span class="text-3xl">⌁</span><h3 class="mt-4 font-bold">High-Speed Wi-Fi</h3><p class="mt-2 text-sm leading-6 text-muted">Reliable internet for video calls, development, and everyday work.</p></div>
+          <div class="rounded-2xl bg-white p-6"><span class="text-3xl">☕</span><h3 class="mt-4 font-bold">Coffee & Refreshments</h3><p class="mt-2 text-sm leading-6 text-muted">Take a break, recharge, and return to your work refreshed.</p></div>
+          <div class="rounded-2xl bg-white p-6"><span class="text-3xl">▤</span><h3 class="mt-4 font-bold">Printing & Scanning</h3><p class="mt-2 text-sm leading-6 text-muted">Convenient access to everyday office essentials.</p></div>
+          <div class="rounded-2xl bg-white p-6"><span class="text-3xl">♧</span><h3 class="mt-4 font-bold">Community Events</h3><p class="mt-2 text-sm leading-6 text-muted">Connect with professionals, founders, and creative minds.</p></div>
+          <div class="rounded-2xl bg-white p-6"><span class="text-3xl">▣</span><h3 class="mt-4 font-bold">Meeting Facilities</h3><p class="mt-2 text-sm leading-6 text-muted">Professional spaces for presentations, interviews, and workshops.</p></div>
+          <div class="rounded-2xl bg-white p-6"><span class="text-3xl">⌖</span><h3 class="mt-4 font-bold">Convenient Location</h3><p class="mt-2 text-sm leading-6 text-muted">Choose a workspace that keeps you connected to your city.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Testimonials -->
+    <section id="stories" class="mx-auto max-w-7xl px-5 py-20 lg:px-8">
+      <div class="mb-10 text-center">
+        <p class="mb-3 text-sm font-bold uppercase tracking-widest text-forest">Member stories</p>
+        <h2 class="text-3xl font-extrabold md:text-4xl">Good work starts with good people.</h2>
+      </div>
+      <div class="grid gap-6 md:grid-cols-3">
+        <article class="rounded-2xl border border-gray-100 p-7">
+          <p class="text-xl tracking-widest text-forest">★★★★★</p>
+          <p class="mt-5 leading-7 text-muted">"The dedicated desk gives me a routine and a professional environment. It has made working independently much easier."</p>
+          <div class="mt-6 border-t pt-5"><p class="font-bold">Priya Sharma</p><p class="text-sm text-muted">Freelance Designer</p></div>
+        </article>
+        <article class="rounded-2xl border border-gray-100 p-7">
+          <p class="text-xl tracking-widest text-forest">★★★★★</p>
+          <p class="mt-5 leading-7 text-muted">"We needed a flexible office while growing our team. Having meeting rooms and a comfortable shared environment has been useful."</p>
+          <div class="mt-6 border-t pt-5"><p class="font-bold">Arun Kumar</p><p class="text-sm text-muted">Startup Founder</p></div>
+        </article>
+        <article class="rounded-2xl border border-gray-100 p-7">
+          <p class="text-xl tracking-widest text-forest">★★★★★</p>
+          <p class="mt-5 leading-7 text-muted">"I enjoy the professional atmosphere and the opportunity to meet people from different industries."</p>
+          <div class="mt-6 border-t pt-5"><p class="font-bold">Meera Nair</p><p class="text-sm text-muted">Software Developer</p></div>
+        </article>
+      </div>
+      <p class="mt-5 text-center text-xs text-muted">Sample testimonials created for demonstration purposes.</p>
+    </section>
+
+    <!-- Booking -->
+    <section id="booking" class="bg-deep py-20 text-white">
+      <div class="mx-auto grid max-w-7xl items-center gap-12 px-5 lg:grid-cols-2 lg:px-8">
+        <div>
+          <p class="mb-3 text-sm font-bold uppercase tracking-widest text-emerald-300">Come see for yourself</p>
+          <h2 class="text-3xl font-extrabold leading-tight md:text-5xl">Your next great workday starts here.</h2>
+          <p class="mt-5 max-w-lg leading-7 text-gray-300">Tell us what you are looking for. Explore the space, discover the amenities, and find a membership that fits your needs.</p>
+          <div class="mt-8 space-y-4 text-sm text-gray-200">
+            <p>✓ Explore different workspace options</p>
+            <p>✓ Ask about membership plans</p>
+            <p>✓ Find a space that fits your schedule</p>
+          </div>
+        </div>
+
+        <form id="bookingForm" class="rounded-3xl bg-white p-6 text-slate-800 shadow-2xl md:p-9">
+          <h3 class="text-2xl font-extrabold">Book a workspace visit</h3>
+          <p class="mt-2 text-sm text-muted">Complete the form to preview your booking request.</p>
+          <div class="mt-6 grid gap-5 sm:grid-cols-2">
+            <div>
+              <label for="fullName" class="mb-2 block text-sm font-semibold">Full name *</label>
+              <input id="fullName" name="fullName" type="text" required minlength="2" autocomplete="name" placeholder="Your name" class="w-full rounded-xl border border-gray-200 px-4 py-3">
+            </div>
+            <div>
+              <label for="email" class="mb-2 block text-sm font-semibold">Email address *</label>
+              <input id="email" name="email" type="email" required autocomplete="email" placeholder="you@example.com" class="w-full rounded-xl border border-gray-200 px-4 py-3">
+            </div>
+            <div>
+              <label for="visitDate" class="mb-2 block text-sm font-semibold">Preferred date *</label>
+              <input id="visitDate" name="visitDate" type="date" required class="w-full rounded-xl border border-gray-200 px-4 py-3">
+            </div>
+            <div>
+              <label for="visitTime" class="mb-2 block text-sm font-semibold">Preferred time *</label>
+              <select id="visitTime" name="visitTime" required class="w-full rounded-xl border border-gray-200 px-4 py-3">
+                <option value="">Select time</option>
+                <option>09:00 AM</option>
+                <option>11:00 AM</option>
+                <option>01:00 PM</option>
+                <option>03:00 PM</option>
+                <option>05:00 PM</option>
+              </select>
+            </div>
+            <div class="sm:col-span-2">
+              <label for="workspace" class="mb-2 block text-sm font-semibold">Workspace type *</label>
+              <select id="workspace" name="workspace" required class="w-full rounded-xl border border-gray-200 px-4 py-3">
+                <option value="">Choose a workspace</option>
+                <option>Hot Desk</option>
+                <option>Dedicated Desk</option>
+                <option>Private Office</option>
+                <option>Meeting Room</option>
+                <option>Enterprise</option>
+              </select>
+            </div>
+            <div class="sm:col-span-2">
+              <label for="message" class="mb-2 block text-sm font-semibold">Anything else? (optional)</label>
+              <textarea id="message" name="message" rows="3" maxlength="300" placeholder="Tell us about your workspace needs..." class="w-full rounded-xl border border-gray-200 px-4 py-3"></textarea>
+            </div>
+            <div class="sm:col-span-2">
+              <button type="submit" class="w-full rounded-full bg-forest px-6 py-4 font-bold text-white hover:bg-deep">Submit Booking Request →</button>
+              <p class="mt-3 text-xs leading-5 text-muted">Demo only: this form does not send data to a server or confirm a real appointment.</p>
+            </div>
+          </div>
+        </form>
+      </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="mx-auto max-w-4xl px-5 py-20">
+      <div class="mb-10 text-center">
+        <p class="mb-3 text-sm font-bold uppercase tracking-widest text-forest">Frequently asked questions</p>
+        <h2 class="text-3xl font-extrabold">A few things you may want to know.</h2>
+      </div>
+      <div class="space-y-3">
+        <details class="group rounded-xl border p-5">
+          <summary class="cursor-pointer list-none font-bold">Can I visit before choosing a membership?<span class="float-right text-forest">+</span></summary>
+          <p class="mt-4 leading-7 text-muted">Yes. Use the booking form to request a visit. In a live service, the team would confirm the appointment.</p>
+        </details>
+        <details class="group rounded-xl border p-5">
+          <summary class="cursor-pointer list-none font-bold">Which membership is right for freelancers?<span class="float-right text-forest">+</span></summary>
+          <p class="mt-4 leading-7 text-muted">A hot desk can be a flexible starting point, while a dedicated desk suits people who prefer a regular workstation.</p>
+        </details>
+        <details class="group rounded-xl border p-5">
+          <summary class="cursor-pointer list-none font-bold">Can small teams rent a private office?<span class="float-right text-forest">+</span></summary>
+          <p class="mt-4 leading-7 text-muted">The private office plan is designed for teams that want a more private working environment. Availability would need to be confirmed.</p>
+        </details>
+        <details class="group rounded-xl border p-5">
+          <summary class="cursor-pointer list-none font-bold">Does the website support online payments?<span class="float-right text-forest">+</span></summary>
+          <p class="mt-4 leading-7 text-muted">Not in this version. Payment processing would require a backend and a payment gateway integration.</p>
+        </details>
+      </div>
+    </section>
+
+    <!-- Contact -->
+    <section id="contact" class="border-t bg-cream">
+      <div class="mx-auto grid max-w-7xl gap-8 px-5 py-14 md:grid-cols-3 lg:px-8">
+        <div>
+          <h2 class="text-2xl font-extrabold">Let's find your space.</h2>
+          <p class="mt-3 leading-6 text-muted">Have questions about memberships or facilities? Get in touch with our team.</p>
+        </div>
+        <div>
+          <h3 class="font-bold">Contact information</h3>
+          <p class="mt-4 text-sm text-muted">Email: hello@worknest.example</p>
+          <p class="mt-2 text-sm text-muted">Phone: +91 90000 00000</p>
+          <p class="mt-2 text-sm text-muted">Location: Chennai, Tamil Nadu</p>
+        </div>
+        <div>
+          <h3 class="font-bold">Quick links</h3>
+          <div class="mt-4 grid grid-cols-2 gap-3 text-sm text-muted">
+            <a class="nav-link" href="#spaces">Our Spaces</a>
+            <a class="nav-link" href="#pricing">Memberships</a>
+            <a class="nav-link" href="#amenities">Amenities</a>
+            <a class="nav-link" href="#stories">Testimonials</a>
+            <a class="nav-link" href="#booking">Book a Visit</a>
+            <a class="nav-link" href="#about">About Us</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="bg-[#0A281F] text-white">
+    <div class="mx-auto flex max-w-7xl flex-col justify-between gap-5 px-5 py-8 sm:flex-row sm:items-center lg:px-8">
+      <a href="#home" class="flex items-center gap-3">
+        <span class="flex h-10 w-10 items-center justify-center rounded-xl bg-white font-extrabold text-forest">W</span>
+        <span><span class="block text-lg font-bold">WorkNest</span><span class="text-xs text-gray-300">Work · Connect · Grow</span></span>
+      </a>
+      <p class="text-sm text-gray-300">© <span id="year"></span> WorkNest. All rights reserved.</p>
+      <div class="flex gap-5 text-sm text-gray-300">
+        <a href="#contact" class="hover:text-white">Contact</a>
+        <a href="#home" class="hover:text-white">Back to top ↑</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Notification -->
+  <div id="toast" role="status" aria-live="polite" class="fixed bottom-5 right-5 z-[60] hidden max-w-sm rounded-2xl bg-deep p-5 text-white shadow-2xl"></div>
+
+  <script>
+    // Mobile navigation
+    const menuToggle = document.getElementById("menuToggle");
+    const navMenu = document.getElementById("navMenu");
+
+    menuToggle.addEventListener("click", () => {
+      const isOpen = navMenu.classList.toggle("menu-open");
+      menuToggle.setAttribute("aria-expanded", String(isOpen));
+      menuToggle.textContent = isOpen ? "✕" : "☰";
+    });
+
+    navMenu.querySelectorAll("a").forEach(link => {
+      link.addEventListener("click", () => {
+        navMenu.classList.remove("menu-open");
+        menuToggle.setAttribute("aria-expanded", "false");
+        menuToggle.textContent = "☰";
+      });
+    });
+
+    // Dynamic copyright year
+    document.getElementById("year").textContent = new Date().getFullYear();
+
+    // Set the earliest booking date to today
+    const visitDate = document.getElementById("visitDate");
+    const today = new Date();
+    const localToday = [
+      today.getFullYear(),
+      String(today.getMonth() + 1).padStart(2, "0"),
+      String(today.getDate()).padStart(2, "0")
+    ].join("-");
+    visitDate.min = localToday;
+
+    // Toast notification
+    let toastTimer;
+    function showToast(title, message) {
+      const toast = document.getElementById("toast");
+      toast.replaceChildren();
+
+      const heading = document.createElement("p");
+      heading.className = "font-bold";
+      heading.textContent = title;
+
+      const description = document.createElement("p");
+      description.className = "mt-1 text-sm text-gray-200";
+      description.textContent = message;
+
+      toast.append(heading, description);
+      toast.classList.remove("hidden");
+      toast.classList.add("toast");
+
+      clearTimeout(toastTimer);
+      toastTimer = setTimeout(() => {
+        toast.classList.add("hidden");
+        toast.classList.remove("toast");
+      }, 4500);
+    }
+
+    // Filter workspaces
+    const filterButtons = document.querySelectorAll(".filter-btn");
+    const workspaceCards = document.querySelectorAll("#spaceGrid article");
+
+    filterButtons.forEach(button => {
+      button.addEventListener("click", () => {
+        const filter = button.dataset.filter;
+
+        filterButtons.forEach(item => {
+          item.classList.remove("bg-forest", "text-white", "border-forest");
+          item.classList.add("border-gray-200");
+        });
+
+        button.classList.add("bg-forest", "text-white", "border-forest");
+        button.classList.remove("border-gray-200");
+
+        workspaceCards.forEach(card => {
+          const matches = filter === "all" || card.dataset.category === filter;
+          card.classList.toggle("hidden", !matches);
+        });
+      });
+    });
+
+    // Workspace details
+    const workspaceDetails = {
+      "Hot Desk": "Flexible shared seating for focused work and collaboration. Sample price: ₹5,999 per month.",
+      "Dedicated Desk": "A reserved desk with a consistent place to work. Sample price: ₹8,999 per month.",
+      "Private Office": "A private workspace for a team that needs focus and privacy. Sample price: ₹12,999 per month.",
+      "Meeting Room": "A professional space for interviews, client meetings, and presentations. Sample price: ₹799 per hour."
+    };
+
+    document.querySelectorAll(".space-select").forEach(button => {
+      button.addEventListener("click", () => {
+        const space = button.dataset.space;
+        showToast(space, workspaceDetails[space]);
+        document.getElementById("workspace").value = space;
+      });
+    });
+
+    // Select a plan and scroll to booking
+    document.querySelectorAll(".choose-plan").forEach(button => {
+      button.addEventListener("click", () => {
+        const plan = button.dataset.plan;
+        document.getElementById("workspace").value = plan;
+        document.getElementById("booking").scrollIntoView({ behavior: "smooth" });
+        showToast("Plan selected", plan + " has been selected in the demo booking form.");
+      });
+    });
+
+    // Booking form validation and demo submission
+    const bookingForm = document.getElementById("bookingForm");
+
+    bookingForm.addEventListener("submit", event => {
+      event.preventDefault();
+
+      if (!bookingForm.checkValidity()) {
+        bookingForm.reportValidity();
+        return;
+      }
+
+      const formData = new FormData(bookingForm);
+      const name = formData.get("fullName").trim();
+      const date = formData.get("visitDate");
+      const workspace = formData.get("workspace");
+
+      showToast(
+        "Request preview created!",
+        "Thank you, " + name + ". Your demo request for " + workspace +
+        " on " + date + " is ready. No appointment has been sent or confirmed."
+      );
+
+      bookingForm.reset();
+      visitDate.min = localToday;
+    });
+
+    // FAQ: close other answers when a new one is opened
+    document.querySelectorAll("details").forEach(detail => {
+      detail.addEventListener("toggle", () => {
+        if (detail.open) {
+          document.querySelectorAll("details").forEach(other => {
+            if (other !== detail) other.open = false;
+          });
+        }
+      });
+    });
+  </script>
+</body>
+</html>
